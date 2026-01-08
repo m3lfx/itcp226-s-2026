@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
         integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
 
@@ -32,6 +35,9 @@
                     <td>{{ $artist->name }}</td>
                     <td>{{ $artist->country }}</td>
                     <td>{{ $artist->img_path }}</td>
+                    <td><a href="{{ url('/artists/' . $artist->id . '/edit') }}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ url('/artists/' . $artist->id . '/delete') }}"><i class="fas fa-trash"
+                                style="color:red"></i></a>
                 </tr>
             @endforeach
 

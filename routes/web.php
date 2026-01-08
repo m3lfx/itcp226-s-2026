@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('/artists', [ArtistController::class, 'index']);
 Route::get('/artists/create', [ArtistController::class, 'create']);
 Route::post('/artists', [ArtistController::class, 'store']);
+Route::get('/artists/{id}/edit', [ArtistController::class, 'edit']);

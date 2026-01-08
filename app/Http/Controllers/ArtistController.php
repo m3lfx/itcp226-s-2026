@@ -33,8 +33,10 @@ class ArtistController extends Controller
 
     public function edit($id)
     {
-        dd($id);
-        // $artist = Artist::find($id);
-        // return view('artist.edit', compact('artist'));
+
+        // dd($id);
+        $artist = Artist::find($id);
+        // dd($artist);
+        return view('artist.edit', compact('artist'));
     }
 }
