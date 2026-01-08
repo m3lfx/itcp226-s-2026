@@ -28,7 +28,7 @@ class ArtistController extends Controller
         $artist->country = trim($request->country);
         $artist->img_path = trim($request->image);
         $artist->save();
-        return "artist saved";
+        return redirect('/artists');
     }
 
     public function edit($id)
