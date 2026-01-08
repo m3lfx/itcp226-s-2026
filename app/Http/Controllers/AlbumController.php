@@ -33,7 +33,14 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $album = new Album();
+        $album->title = $request->title;
+        $album->genre = $request->genre;
+        $album->date_released = $request->date_released;
+        $album->artist_id = $request->artist_id;
+
+        $album->save();
+        return redirect()->route('albums.index');
     }
 
     /**
