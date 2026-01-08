@@ -56,7 +56,10 @@ class AlbumController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $album = Album::find($id);
+        $artists = Artist::all();
+
+        return view('album.edit', compact('album', 'artists'));
     }
 
     /**
@@ -64,7 +67,15 @@ class AlbumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Album::where('id', $id)
+            ->update([
+                'title' => $request->title,
+                'genre' => $request->genre,
+                'date_released' => $request->date_released,
+                'artist_id' => $request->artist_id,
+            ]);
+
+        return redirect()->route('albums.index');
     }
 
     /**
