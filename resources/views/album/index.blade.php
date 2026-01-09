@@ -23,4 +23,5 @@
         @endforeach
 
     </table>
+    <div>{{ $albums->links() }}</div>
 @endsection

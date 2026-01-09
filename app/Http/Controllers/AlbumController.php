@@ -20,7 +20,7 @@ class AlbumController extends Controller
             ->join('albums as al', 'ar.id', '=', 'al.artist_id')
             ->select('al.id', 'al.title', 'ar.name as artist_name', 'al.genre', 'al.date_released')
             ->orderBy('al.id', 'DESC')
-            ->get();
+            ->paginate(10);
         // dd($albums);
         return view('album.index', compact('albums'));
     }
