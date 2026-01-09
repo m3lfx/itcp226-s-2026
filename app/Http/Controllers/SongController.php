@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Album;
+use Illuminate\Support\Facades\Validator;
 
 class SongController extends Controller
 {
@@ -36,7 +37,11 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|min:3',
+            'description' => 'required',
+        ]);
+        return redirect()->route('songs.index');
     }
 
     /**

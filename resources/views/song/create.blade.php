@@ -2,9 +2,15 @@
 
 @section('body')
     {{-- {{ dd($artists) }} --}}
-    {{-- @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach --}}
+    {{-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif --}}
     <div class="container">
         <form action="{{ route('songs.store') }}" method="POST">
             @csrf
@@ -13,17 +19,17 @@
                 <label for="song_name" class="form-label">song Name</label>
                 <input type="text" class="form-control" id="song_name" placeholder="song title" name="title"
                     value="{{ old('title') }}">
-                {{-- @error('title')
+                @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
-                @enderror --}}
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">description</label>
                 <input type="text" class="form-control" id="description" placeholder="song description"
                     name="description" value="{{ old('description') }}">
-                {{-- @error('description')
+                @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
-                @enderror --}}
+                @enderror
             </div>
 
             <div class="mb-3">
