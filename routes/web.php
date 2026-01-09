@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\SongController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,4 @@ Route::get('/artists/{id}/edit', [ArtistController::class, 'edit'])->name('artis
 Route::post('/artists/{id}/update', [ArtistController::class, 'update'])->name('artists.update');
 Route::get('/artists/{id}/delete', [ArtistController::class, 'delete'])->name('artists.delete');
 Route::resource('albums', AlbumController::class);
+Route::resource('songs', SongController::class);
