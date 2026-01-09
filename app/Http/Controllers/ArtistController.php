@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Storage;
 
 class ArtistController extends Controller
 {
@@ -21,12 +22,20 @@ class ArtistController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->file('image'));
+        $name = $request->file('image')->getClientOriginalName();
+        $extension = $request->file('image')->getClientOriginalExtension();
+        // dd($extension);
+        $path = Storage::putFileAs(
+            'public/images',
+            $request->file('image'),
+            $name
+        );
         // dd($request->artist_name, $request->country, $request->image);
         $artist = new Artist;
         $artist->name = trim($request->artist_name);
         $artist->country = trim($request->country);
-        $artist->img_path = trim($request->image);
+        $artist->img_path = 'storage/images/' . $name;
         $artist->save();
         // return redirect('/artists');
         return redirect()->route('artists.index');

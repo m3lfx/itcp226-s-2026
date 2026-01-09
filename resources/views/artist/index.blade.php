@@ -4,6 +4,7 @@
         <thead>
             <tr>
                 <th scope="col">id</th>
+                <th scope="col">image</th>
                 <th scope="col">artist name</th>
                 <th scope="col">country</th>
                 <th scope="col">image</th>
@@ -14,9 +15,10 @@
                 {{-- {{ dump($artist) }} --}}
                 <tr>
                     <td>{{ $artist->id }}</td>
+
                     <td>{{ $artist->name }}</td>
                     <td>{{ $artist->country }}</td>
-                    <td>{{ $artist->img_path }}</td>
+                    <td><img src="{{ url($artist->img_path) }}" alt="artist image" width="50" height="50"></td>
                     <td><a href="{{ url('/artists/' . $artist->id . '/edit') }}"><i class="fas fa-edit"></i></a></td>
                     <td><a href="{{ url('/artists/' . $artist->id . '/delete') }}"><i class="fas fa-trash"
                                 style="color:red"></i></a>

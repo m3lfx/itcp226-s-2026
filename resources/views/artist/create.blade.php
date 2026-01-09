@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <form action="{{ url('/artists') }}" METHOD="POST">
+    <form action="{{ url('/artists') }}" METHOD="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Artist Name</label>
@@ -33,7 +33,7 @@
 
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Artist Image</label>
-            <input type="text" name="image" class="form-control" id="exampleInputEmail1"
+            <input type="file" name="image" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp">
 
         </div>
