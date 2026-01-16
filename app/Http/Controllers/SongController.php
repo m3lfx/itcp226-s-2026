@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Album;
+use App\Models\Song;
 use Illuminate\Support\Facades\Validator;
 
 class SongController extends Controller
@@ -57,7 +58,12 @@ class SongController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $song = Song::find($id);
+        $album = Album::where('id', $song->album_id)->first();
+
+        $albums = Album::where('id', '<>', $song->album_id)->get();
+
+        return view('song.edit', compact('albums', 'song', 'album'));
     }
 
     /**
