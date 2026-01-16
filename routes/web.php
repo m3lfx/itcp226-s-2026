@@ -25,5 +25,7 @@ Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store
 Route::get('/artists/{id}/edit', [ArtistController::class, 'edit'])->name('artists.edit');
 Route::post('/artists/{id}/update', [ArtistController::class, 'update'])->name('artists.update');
 Route::get('/artists/{id}/delete', [ArtistController::class, 'delete'])->name('artists.delete');
+Route::get('/songs/{id}/restore',  [SongController::class, 'restore'])->name('songs.restore');
+
 Route::resource('albums', AlbumController::class);
 Route::resource('songs', SongController::class);

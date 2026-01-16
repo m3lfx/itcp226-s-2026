@@ -16,7 +16,7 @@
                 <th scope="col">song id</th>
                 <th scope="col">song name</th>
                 <th scope="col">description</th>
-                <th scope="col">album title</th>
+                {{-- <th scope="col">album title</th> --}}
                 <th>action</th>
             </tr>
         </thead>
@@ -26,8 +26,8 @@
                     <td>{{ $song->id }}</td>
                     <td>{{ $song->song_name }}</td>
                     <td>{{ $song->description }}</td>
-                    <td>{{ $song->album_title }}</td>
-                    <td><a href="{{ route('songs.edit', ['song' => $song->id]) }}"><i class="fas fa-edit"></i></a></td>
+                    {{-- <td>{{ $song->album_title }}</td> --}}
+                    {{-- <td><a href="{{ route('songs.edit', ['song' => $song->id]) }}"><i class="fas fa-edit"></i></a></td>
                     <td>
                         <form action="{{ route('songs.destroy', $song->id) }}" method="POST">
                             @method('DELETE')
@@ -35,7 +35,24 @@
 
                             <button><i class="fas fa-trash" style="color:red"></i></button>
                         </form>
-                    </td>
+                    </td> --}}
+
+                    @if ($song->deleted_at === null)
+                        <td><a href="{{ route('songs.edit', $song->id) }}"><i class="fas fa-edit"></i></a>
+                            <form action="{{ route('songs.destroy', $song->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button><i class="fas fa-trash" style="color:red"></i></button>
+                            </form>
+                            <i class="fa-solid fa-rotate-left" style="color:gray"></i>
+                        </td>
+                    @else
+                        <td><i class="fas fa-edit" style="color:gray"></i>
+                            <i class="fas fa-trash" style="color:gray"></i>
+                            <a href="{{ route('songs.restore', $song->id) }}"><i class="fa-solid fa-rotate-left"
+                                    style="color:blue"></i></a>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>
