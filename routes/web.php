@@ -45,7 +45,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('songs', SongController::class);
     Route::resource('listeners', ListenerController::class);
     Route::get('/listeners/{id}/restore',  [ListenerController::class, 'restore'])->name('listeners.restore');
-
+    Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->name('listeners.addAlbums');
+    Route::post('/listeners/add-album', [ListenerController::class, 'addAlbumListener'])->name('listeners.addAlbumListener');
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 });
