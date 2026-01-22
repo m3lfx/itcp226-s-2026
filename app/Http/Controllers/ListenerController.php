@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listener;
+use Illuminate\Support\Facades\DB;
 
 class ListenerController extends Controller
 {
@@ -68,8 +69,16 @@ class ListenerController extends Controller
     public function restore($id)
     {
         $listener = Listener::withTrashed()->find($id)->restore();
-
-
         return redirect()->route('listeners.index');
+    }
+
+    public function addAlbums()
+    {
+
+        $albums = DB::table('albums')
+            ->join('artists', 'artists.id', '=', 'albums.artist_id')
+            ->get(['name', 'albums.id', 'title', 'genre', 'date_released']);
+        // dd($albums);
+        return view('listener.add_album', compact('albums'));
     }
 }
