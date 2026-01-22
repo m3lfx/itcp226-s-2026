@@ -32,7 +32,7 @@ Route::view('/user/login', 'user.login');
 Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
 
 Route::post('signin', [UserController::class, 'postSignin'])->name('user.signin');
-Route::resource('listeners', ListenerController::class);
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('albums', AlbumController::class);
     Route::resource('songs', SongController::class);
+    Route::resource('listeners', ListenerController::class);
+    Route::get('/listeners/{id}/restore',  [ListenerController::class, 'restore'])->name('listeners.restore');
+
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 });

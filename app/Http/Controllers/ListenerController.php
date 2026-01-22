@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listener;
 
 class ListenerController extends Controller
 {
@@ -11,7 +12,8 @@ class ListenerController extends Controller
      */
     public function index()
     {
-        //
+        $listeners = Listener::withTrashed()->get();
+        return view('listener.index', compact('listeners'));
     }
 
     /**
@@ -59,6 +61,15 @@ class ListenerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Listener::destroy($id);
+        return redirect()->route('listeners.index');
+    }
+
+    public function restore($id)
+    {
+        $listener = Listener::withTrashed()->find($id)->restore();
+
+
+        return redirect()->route('listeners.index');
     }
 }
