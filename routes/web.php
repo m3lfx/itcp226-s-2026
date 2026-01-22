@@ -34,7 +34,8 @@ Route::post('/user/register', [UserController::class, 'register'])->name('user.r
 Route::post('signin', [UserController::class, 'postSignin'])->name('user.signin');
 
 Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->name('listeners.addAlbums');
-
+Route::get('/listeners/edit-album', [ListenerController::class, 'editAlbumListener'])->name('listeners.editAlbumListener');
+Route::put('/listeners/update-albums', [ListenerController::class, 'updateAlbums'])->name('listeners.updateAlbums');
 Route::middleware(['auth'])->group(function () {
     Route::get('/artists/{id}/edit', [ArtistController::class, 'edit'])->name('artists.edit');
     Route::post('/artists/{id}/update', [ArtistController::class, 'update'])->name('artists.update');
@@ -47,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/listeners/{id}/restore',  [ListenerController::class, 'restore'])->name('listeners.restore');
     Route::get('/listeners/add-album', [ListenerController::class, 'addAlbums'])->name('listeners.addAlbums');
     Route::post('/listeners/add-album', [ListenerController::class, 'addAlbumListener'])->name('listeners.addAlbumListener');
+
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 });
