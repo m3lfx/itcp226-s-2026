@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListenerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +32,7 @@ Route::view('/user/login', 'user.login');
 Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
 
 Route::post('signin', [UserController::class, 'postSignin'])->name('user.signin');
-
+Route::resource('listeners', ListenerController::class);
 
 
 Route::middleware(['auth'])->group(function () {
