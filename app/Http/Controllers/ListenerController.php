@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Listener;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ListenerController extends Controller
 {
@@ -86,8 +87,8 @@ class ListenerController extends Controller
     {
         // dd(Auth::id());
 
-        $listener = Listener::where('user_id', Auth::id())->first();
-        // dd($request->album_id);
+        $listener = Listener::where('user_id', Auth::id())->first(['id']);
+        // dd($listener->id);
         foreach ($request->album_id as $album_id) {
             // dump($album_id);
             DB::table('album_listener')->insert([
